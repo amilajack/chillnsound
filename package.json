@@ -6,11 +6,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "parcel build index.html",
+    "build": "parcel build src/index.html --out-dir docs",
     "precommit": "lint-staged",
-    "dev": "parcel index.html --open",
+    "dev": "parcel src/index.html --open",
     "e2e": "testcafe chrome ./test/index.e2e.js",
     "lint": "eslint .",
+    "start": "yarn dev",
     "test": "yarn build && yarn e2e"
   },
   "devDependencies": {
