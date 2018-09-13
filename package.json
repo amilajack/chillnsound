@@ -6,12 +6,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "parcel build src/index.html",
+    "build": "parcel build src/index.html --public-url .",
     "precommit": "lint-staged",
     "dev": "parcel src/index.html --open",
     "e2e": "testcafe chrome ./test/index.e2e.js",
     "lint": "eslint .",
-    "publish-gh-pages": "push-dir --dir=dist --branch=gh-pages",
+    "publish-gh-pages": "push-dir --dir=dist --branch=gh-pages --allow-unclean",
     "start": "yarn dev",
     "test": "yarn build && yarn e2e"
   },
@@ -28,6 +28,7 @@
     "babel-preset-react-optimize": "^1.0.1",
     "babel-preset-stage-0": "^6.24.1",
     "browser-sync": "^2.24.7",
+    "cssnano": "^4.1.0",
     "del": "^3.0.0",
     "eslint": "^5.5.0",
     "eslint-config-bliss": "^2.3.0",
