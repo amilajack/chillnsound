@@ -51,7 +51,7 @@ gulp.task('useref', () =>
     .pipe(useref())
     .pipe(gulpIf('*.js', uglify()))
     .pipe(gulpIf('*.css', cssnano()))
-    .pipe(gulp.dest('docs'))
+    .pipe(gulp.dest('dist'))
 );
 
 // Optimizing Images
@@ -66,29 +66,29 @@ gulp.task('images', () =>
         })
       )
     )
-    .pipe(gulp.dest('docs/images'))
+    .pipe(gulp.dest('dist/images'))
 );
 
 // Copying fonts
 gulp.task('fonts', () =>
-  gulp.src('src/fonts/**/*').pipe(gulp.dest('docs/fonts'))
+  gulp.src('src/fonts/**/*').pipe(gulp.dest('dist/fonts'))
 );
 
 // Copying sounds
 gulp.task('sounds', () =>
-  gulp.src('src/sounds/**/*').pipe(gulp.dest('docs/sounds'))
+  gulp.src('src/sounds/**/*').pipe(gulp.dest('dist/sounds'))
 );
 
 // Cleaning
-gulp.task('clean', () => del.sync('docs').then(cb => cache.clearAll(cb)));
+gulp.task('clean', () => del.sync('dist').then(cb => cache.clearAll(cb)));
 
-gulp.task('clean:docs', () =>
+gulp.task('clean:dist', () =>
   del.sync([
-    'docs/**/*',
-    '!docs/images',
-    '!docs/images/**/*',
-    '!docs/sounds',
-    '!docs/sounds/**/*',
+    'dist/**/*',
+    '!dist/images',
+    '!dist/images/**/*',
+    '!dist/sounds',
+    '!dist/sounds/**/*',
   ])
 );
 
@@ -101,7 +101,7 @@ gulp.task('default', callback => {
 
 gulp.task('build', callback => {
   runSequence(
-    'clean:docs',
+    'clean:dist',
     'sass',
     ['useref', 'images', 'fonts', 'sounds'],
     callback
