@@ -78,7 +78,7 @@ function playSound(e) {
   if (selectedSound.paused) {
     volumeControler.style.opacity = 1;
     selectedSound.loop = true;
-    if (volumeControler.value == 0) {
+    if (volumeControler.value === 0) {
       volumeControler.value = 0.1;
     }
     selectedSound.volume = volumeControler.value;
@@ -107,15 +107,10 @@ function volumeSound(e) {
 }
 
 function clock() {
-  const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-  const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
   const now = new Date();
-  // if (now.getSeconds()==0 || now.getMinutes==0) {
-  // 	separator.classList.add("blink");
-  // }
-  hours.innerText = now.getHours() < 10 ? `0${now.getHours()}` : now.getHours();
+  const twelveHrTime = ((now.getHours() + 11) % 12 + 1);
+  hours.innerText = twelveHrTime < 10 ? `0${twelveHrTime}` : twelveHrTime;
   minutes.innerText = now.getMinutes() < 10 ? `0${now.getMinutes()}` : now.getMinutes();
-  // seconds.innerText = now.getSeconds()<10?"0"+now.getSeconds():now.getSeconds();
 }
 clock();
 const interval = setInterval(clock, 1000);
